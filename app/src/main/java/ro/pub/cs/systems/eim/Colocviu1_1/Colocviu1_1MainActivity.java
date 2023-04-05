@@ -20,6 +20,15 @@ public class Colocviu1_1MainActivity extends AppCompatActivity {
     private int serviceStatus = Constants.SERVICE_STOPPED;
     private IntentFilter intentFilter = new IntentFilter();
 
+    private class MessageBroadcastReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d("ceva", "ceva");
+            Log.d(Constants.BROADCAST_RECEIVER_TAG, intent.getStringExtra(Constants.BROADCAST_RECEIVER_EXTRA));
+        }
+    }
+    private MessageBroadcastReceiver messageBroadcastReceiver = new MessageBroadcastReceiver();
+
     public class ClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
@@ -98,14 +107,6 @@ public class Colocviu1_1MainActivity extends AppCompatActivity {
         } else {
             noClicks = 0;
             etiquette.setText("");
-        }
-    }
-
-    private MessageBroadcastReceiver messageBroadcastReceiver = new MessageBroadcastReceiver();
-    private class MessageBroadcastReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Log.d(Constants.BROADCAST_RECEIVER_TAG, intent.getStringExtra(Constants.BROADCAST_RECEIVER_EXTRA));
         }
     }
 
